@@ -1,16 +1,15 @@
-public class Player
+public class Enemy
 {
-  public string Name {get; set;}
+  public string Name {get; private set;}
   public int HpPoints {get; private set;}
   public int ManaPoints {get; private set;}
   public int AttackPoints {get; private set;}
   public int DefensePoints {get; private set;}
   public int SpeedPoints {get; private set;}
-  public CharacterClass CharacterClass {get; set;}
+  public CharacterClass CharacterClass {get; private set;}
 
-  public Player(string name, CharacterClass characterClass)
+  public Enemy(CharacterClass characterClass)
   {
-    Name = name;
     CharacterClass = characterClass;
     switch(characterClass)
     {
@@ -20,6 +19,7 @@ public class Player
       ManaPoints = 120;
       DefensePoints = 6;
       SpeedPoints = 8;
+      Name = "Inimigo Mago";
       break;
       case CharacterClass.Guerreiro:
       HpPoints = 140;
@@ -27,6 +27,7 @@ public class Player
       ManaPoints = 20;
       DefensePoints = 18;
       SpeedPoints = 6;
+      Name = "Inimigo Guerreiro";
       break;
       case CharacterClass.Arqueiro:
       HpPoints = 100;
@@ -34,6 +35,7 @@ public class Player
       ManaPoints = 40;
       DefensePoints = 10;
       SpeedPoints = 12;
+      Name = "Inimigo Arqueiro";
       break;
       case CharacterClass.Ladino:
       HpPoints = 90;
@@ -41,12 +43,12 @@ public class Player
       ManaPoints = 30;
       DefensePoints = 8;
       SpeedPoints = 18;
+      Name = "Inimigo Ladino";
       break;
-    default:
-    throw new ArgumentException("Classe inválida");
+
       
     }
-  
   }
-  
+
+
 }
