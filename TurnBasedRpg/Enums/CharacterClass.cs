@@ -1,7 +1,7 @@
-public enum CharacterClass{
-  
-  Mago,
-  Guerreiro,
-  Arqueiro,
-  Ladino
+public enum CharacterClass
+{
+    Mago,
+    Guerreiro,
+    Arqueiro,
+    Ladino,
 }
