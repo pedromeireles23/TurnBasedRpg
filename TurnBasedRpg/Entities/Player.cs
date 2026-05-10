@@ -8,6 +8,8 @@ public class Player
     public int CurrentHealth { get; private set; }
     public int SpeedPoints { get; private set; }
 
+    //TODO melhorar atributos
+
     // private bool _isDeath;
     // public bool IsDeath
     // {

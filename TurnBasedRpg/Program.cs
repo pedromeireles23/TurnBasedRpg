@@ -1,6 +1,9 @@
 ﻿Player player1 = new Player("Alemao", CharacterClass.Mago);
-Console.WriteLine($"Player Hp Points: {player1.HpPoints}");
-Console.WriteLine($"Player Attack Points: {player1.AttackPoints}");
-Console.WriteLine($"Player Mana Points: {player1.ManaPoints}");
-Console.WriteLine($"Player Defense Points: {player1.DefensePoints}");
-Console.WriteLine($"Player Speed Points: {player1.SpeedPoints}");
+
+System.Console.WriteLine(player1.CurrentHealth);
+
+Enemy enemy1 = new Enemy(CharacterClass.Mago);
+
+player1.ReceiveDamage(enemy1.Attack());
+System.Console.WriteLine(player1.CurrentHealth);
+//TODO Retirar Lógica do console.cs

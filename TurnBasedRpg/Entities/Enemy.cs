@@ -8,6 +8,7 @@ public class Enemy
     public int SpeedPoints { get; private set; }
     public int CurrentHealth { get; private set; }
 
+    //TODO melhorar atributos
     public CharacterClass CharacterClass { get; private set; }
 
     public Enemy(CharacterClass characterClass)
