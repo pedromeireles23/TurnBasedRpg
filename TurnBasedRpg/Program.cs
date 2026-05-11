@@ -1,9 +1,12 @@
-﻿Player player1 = new Player("Alemao", CharacterClass.Mago);
+﻿Character player1 = new Character("Alemao", CharacterClass.Mago);
 
 System.Console.WriteLine(player1.CurrentHealth);
 
-Enemy enemy1 = new Enemy(CharacterClass.Mago);
+Character enemy1 = new Character("Slime", CharacterClass.Mago);
 
-player1.ReceiveDamage(enemy1.Attack());
-System.Console.WriteLine(player1.CurrentHealth);
+// player1.ReceiveDamage(enemy1.Attack());
+// System.Console.WriteLine(player1.CurrentHealth);
 //TODO Retirar Lógica do console.cs
+
+Battle battle1 = new Battle(player1, enemy1);
+battle1.StartCombat();

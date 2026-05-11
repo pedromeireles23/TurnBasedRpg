@@ -1,14 +1,14 @@
 public class Battle
 {
-    public Player Player { get; private set; }
-    public Enemy Enemy { get; private set; }
+    public Character Character1 { get; private set; }
+    public Character Character2 { get; private set; }
 
     public int CountRounds { get; private set; } = 1;
 
-    public Battle(Player player, Enemy enemy)
+    public Battle(Character character1, Character character2)
     {
-        Player = player;
-        Enemy = enemy;
+        Character1 = character1;
+        Character2 = character2;
     }
 
     //TODO fazer lógica da batalha
@@ -25,12 +25,12 @@ public class Battle
     public void RunRound()
     {
         Console.WriteLine($"Round: {CountRounds}");
-        if (Player.SpeedPoints >= Enemy.SpeedPoints)
+        if (Character1.SpeedPoints >= Character2.SpeedPoints)
         {
             // Enemy.ReceiveDamage(Player.Attack());
-            Console.WriteLine($"Player: {Player.Name} attacked {Enemy.Name} ");
-            Console.WriteLine($"Damage caused: {Enemy.ReceiveDamage(Player.Attack())}");
-            Console.WriteLine($"Enemy HP:{Enemy.CurrentHealth}");
+            Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
+            Console.WriteLine($"Damage caused: {Character2.ReceiveDamage(Character1.Attack())}");
+            Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
 
             if (CheckDeath() == true)
             {
@@ -38,9 +38,11 @@ public class Battle
             }
             else
             {
-                Console.WriteLine($"Enemy: {Enemy.Name} attacked {Player.Name} ");
-                Console.WriteLine($"Damage caused: {Player.ReceiveDamage(Enemy.Attack())}");
-                Console.WriteLine($"Player HP:{Player.CurrentHealth}");
+                Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
+                Console.WriteLine(
+                    $"Damage caused: {Character1.ReceiveDamage(Character2.Attack())}"
+                );
+                Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
                 if (CheckDeath() == true)
                 {
                     Console.WriteLine("Player is Dead");
@@ -51,18 +53,20 @@ public class Battle
         else
         {
             // Player.ReceiveDamage(Enemy.Attack());
-            Console.WriteLine($"Enemy: {Enemy.Name} attacked {Player.Name} ");
-            Console.WriteLine($"Damage caused: {Player.ReceiveDamage(Enemy.Attack())}");
-            Console.WriteLine($"Player HP:{Player.CurrentHealth}");
+            Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
+            Console.WriteLine($"Damage caused: {Character1.ReceiveDamage(Character2.Attack())}");
+            Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
             if (CheckDeath() == true)
             {
                 Console.WriteLine("Player is Dead");
             }
             else
             {
-                Console.WriteLine($"Player: {Player.Name} attacked {Enemy.Name} ");
-                Console.WriteLine($"Damage caused: {Enemy.ReceiveDamage(Player.Attack())}");
-                Console.WriteLine($"Enemy HP:{Enemy.CurrentHealth}");
+                Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
+                Console.WriteLine(
+                    $"Damage caused: {Character2.ReceiveDamage(Character1.Attack())}"
+                );
+                Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
 
                 if (CheckDeath() == true)
                 {
@@ -75,11 +79,11 @@ public class Battle
 
     public bool CheckDeath()
     {
-        if (Player.CurrentHealth <= 0)
+        if (Character1.CurrentHealth <= 0)
         {
             return true;
         }
-        else if (Enemy.CurrentHealth <= 0)
+        else if (Character2.CurrentHealth <= 0)
         {
             return true;
         }
