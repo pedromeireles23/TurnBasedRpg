@@ -29,7 +29,7 @@ public class Battle
         {
             // Enemy.ReceiveDamage(Player.Attack());
             Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
-            Console.WriteLine($"Damage caused: {Character2.ReceiveDamage(Character1.Attack())}");
+            Console.WriteLine($"{Character2.ReceiveDamage(Character1.UseSkill())}");
             Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
 
             if (CheckDeath() == true)
@@ -39,9 +39,7 @@ public class Battle
             else
             {
                 Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
-                Console.WriteLine(
-                    $"Damage caused: {Character1.ReceiveDamage(Character2.Attack())}"
-                );
+                Console.WriteLine($"{Character1.ReceiveDamage(Character2.UseSkill())}");
                 Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
                 if (CheckDeath() == true)
                 {
@@ -54,7 +52,7 @@ public class Battle
         {
             // Player.ReceiveDamage(Enemy.Attack());
             Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
-            Console.WriteLine($"Damage caused: {Character1.ReceiveDamage(Character2.Attack())}");
+            Console.WriteLine($"{Character1.ReceiveDamage(Character2.UseSkill())}");
             Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
             if (CheckDeath() == true)
             {
@@ -63,9 +61,7 @@ public class Battle
             else
             {
                 Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
-                Console.WriteLine(
-                    $"Damage caused: {Character2.ReceiveDamage(Character1.Attack())}"
-                );
+                Console.WriteLine($"{Character2.ReceiveDamage(Character1.UseSkill())}");
                 Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
 
                 if (CheckDeath() == true)
