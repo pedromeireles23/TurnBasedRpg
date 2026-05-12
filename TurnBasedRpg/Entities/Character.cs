@@ -1,13 +1,15 @@
 public class Character
 {
     public string Name { get; set; }
-    public int HpPoints { get; private set; }
-    public int ManaPoints { get; private set; }
+    public int MaxHealth { get; private set; }
+    public int MaxMana { get; private set; }
 
     public int CurrentMana { get; private set; }
     public int AttackPoints { get; private set; }
     public int DefensePoints { get; private set; }
     public List<Skill> Skills { get; private set; }
+    public List<Item> Inventory { get; private set; }
+
     public int CurrentHealth { get; private set; }
     public int SpeedPoints { get; private set; }
     public CharacterClass CharacterClass { get; private set; }
@@ -16,53 +18,52 @@ public class Character
     {
         Name = name;
         CharacterClass = characterClass;
+        Inventory = new List<Item>();
+        Skills = new List<Skill>();
+
         switch (characterClass)
         {
             case CharacterClass.Mago:
-                HpPoints = 70;
+                MaxHealth = 70;
                 CurrentHealth = 70;
                 AttackPoints = 12;
-                ManaPoints = 120;
+                MaxMana = 120;
                 CurrentMana = 120;
                 DefensePoints = 6;
                 SpeedPoints = 8;
-                Skills = new List<Skill>();
                 var fireball = new Skill(35, "Fireball", 25);
                 Skills.Add(fireball);
                 break;
             case CharacterClass.Guerreiro:
-                HpPoints = 140;
+                MaxHealth = 140;
                 CurrentHealth = 140;
                 AttackPoints = 20;
-                ManaPoints = 20;
+                MaxMana = 20;
                 CurrentMana = 20;
                 DefensePoints = 18;
                 SpeedPoints = 6;
-                Skills = new List<Skill>();
                 var sismicSmash = new Skill(45, "Sismic Smash", 10);
                 Skills.Add(sismicSmash);
                 break;
             case CharacterClass.Arqueiro:
-                HpPoints = 100;
+                MaxHealth = 100;
                 CurrentHealth = 100;
                 AttackPoints = 16;
-                ManaPoints = 40;
+                MaxMana = 40;
                 CurrentMana = 40;
                 DefensePoints = 10;
                 SpeedPoints = 12;
-                Skills = new List<Skill>();
                 var stormyArrow = new Skill(32, "Stormy Arrow", 15);
                 Skills.Add(stormyArrow);
                 break;
             case CharacterClass.Ladino:
-                HpPoints = 90;
+                MaxHealth = 90;
                 CurrentHealth = 90;
                 AttackPoints = 18;
-                ManaPoints = 30;
+                MaxMana = 30;
                 CurrentMana = 30;
                 DefensePoints = 8;
                 SpeedPoints = 18;
-                Skills = new List<Skill>();
                 var shadowStrike = new Skill(35, "Shadow Strike", 10);
                 Skills.Add(shadowStrike);
                 break;
@@ -70,6 +71,51 @@ public class Character
                 throw new ArgumentException("Classe inválida");
         }
     }
+
+    public void Heal(int amount)
+    {
+        CurrentHealth += amount;
+        if (CurrentHealth >= MaxHealth)
+            CurrentHealth = MaxHealth;
+    }
+
+    public void RestoreMana(int amount)
+    {
+        CurrentMana += amount;
+        if (CurrentMana >= MaxMana)
+            CurrentMana = MaxMana;
+    }
+
+    public void AddItem(Item item)
+    {
+        Inventory.Add(item);
+    }
+
+    public void UseItem(Consumable item)
+    {
+        item.Use(this);
+        Inventory.Remove(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        Inventory.Remove(item);
+    }
+
+    // public void EquipWeapon(string name)
+    // {
+    //     var weapon = Inventory.FirstOrDefault(i => i.Name == name);
+    //     if (weapon != null)
+    //     {
+    //         EquipedWeapon = true;
+    //         AttackPoints += weapon.BonusAttack;
+    //         DefensePoints += weapon.BonusDefense;
+    //     }
+    //     else
+    //     {
+    //         EquipedWeapon = false;
+    //     }
+    // }
 
     public int Attack()
     {
