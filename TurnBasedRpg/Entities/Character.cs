@@ -1,18 +1,18 @@
 public class Character
 {
     public string Name { get; set; }
-    public int MaxHealth { get; private set; }
-    public int MaxMana { get; private set; }
+    public int MaxHealth { get; protected set; }
+    public int MaxMana { get; protected set; }
 
-    public int CurrentMana { get; private set; }
-    public int AttackPoints { get; private set; }
-    public int DefensePoints { get; private set; }
-    public List<Skill> Skills { get; private set; }
-    public List<Item> Inventory { get; private set; }
+    public int CurrentMana { get; protected set; }
+    public int AttackPoints { get; protected set; }
+    public int DefensePoints { get; protected set; }
+    public List<Skill> Skills { get; protected set; }
+    public List<Item> Inventory { get; protected set; }
 
-    public int CurrentHealth { get; private set; }
-    public int SpeedPoints { get; private set; }
-    public CharacterClass CharacterClass { get; private set; }
+    public int CurrentHealth { get; protected set; }
+    public int SpeedPoints { get; protected set; }
+    public CharacterClass CharacterClass { get; protected set; }
 
     public Character(string name, CharacterClass characterClass)
     {
