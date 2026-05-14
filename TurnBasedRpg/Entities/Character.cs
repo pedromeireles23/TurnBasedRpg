@@ -73,6 +73,11 @@ public class Character
         }
     }
 
+    public virtual BattleAction ChooseAction()
+    {
+        return new BattleAction(BattleActionType.Attack);
+    }
+
     public void Heal(int amount)
     {
         CurrentHealth += amount;
