@@ -25,52 +25,46 @@ public class Battle
     public void RunRound()
     {
         Console.WriteLine($"Round: {CountRounds}");
+
+        Character firstAttacker;
+        Character secondAttacker;
+
         if (Character1.SpeedPoints >= Character2.SpeedPoints)
         {
-            // Enemy.ReceiveDamage(Player.Attack());
-            Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
-            Console.WriteLine($"{Character2.ReceiveDamage(Character1.UseSkill())}");
-            Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
-
-            if (CheckDeath() == true)
-            {
-                Console.WriteLine("Enemy is Dead");
-            }
-            else
-            {
-                Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
-                Console.WriteLine($"{Character1.ReceiveDamage(Character2.UseSkill())}");
-                Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
-                if (CheckDeath() == true)
-                {
-                    Console.WriteLine("Player is Dead");
-                }
-                Console.WriteLine("Rodada Finalizada");
-            }
+            firstAttacker = Character1;
+            secondAttacker = Character2;
         }
         else
         {
-            // Player.ReceiveDamage(Enemy.Attack());
-            Console.WriteLine($"Enemy: {Character2.Name} attacked {Character1.Name} ");
-            Console.WriteLine($"{Character1.ReceiveDamage(Character2.UseSkill())}");
-            Console.WriteLine($"Player HP:{Character1.CurrentHealth}");
+            firstAttacker = Character2;
+            secondAttacker = Character1;
+        }
+
+        ExecuteAttack(firstAttacker, secondAttacker);
+
+        if (CheckDeath() == true)
+        {
+            Console.WriteLine($"{secondAttacker.Name} is Dead");
+        }
+        else
+        {
+            ExecuteAttack(secondAttacker, firstAttacker);
+
             if (CheckDeath() == true)
             {
-                Console.WriteLine("Player is Dead");
+                Console.WriteLine($"{firstAttacker.Name} is Dead");
             }
-            else
-            {
-                Console.WriteLine($"Player: {Character1.Name} attacked {Character2.Name} ");
-                Console.WriteLine($"{Character2.ReceiveDamage(Character1.UseSkill())}");
-                Console.WriteLine($"Enemy HP:{Character2.CurrentHealth}");
 
-                if (CheckDeath() == true)
-                {
-                    Console.WriteLine("Enemy is Dead");
-                }
-                Console.WriteLine("Rodada Finalizada");
-            }
+            Console.WriteLine("Rodada Finalizada");
         }
+    }
+
+    private void ExecuteAttack(Character attacker, Character target)
+    {
+        System.Console.WriteLine($"{attacker.Name} attacked {target.Name}");
+        var result = target.ReceiveDamage(attacker.UseSkill());
+        System.Console.WriteLine(result);
+        System.Console.WriteLine($"{target.Name} Hp: {target.CurrentHealth}");
     }
 
     public bool CheckDeath()

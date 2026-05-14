@@ -12,6 +12,7 @@ public class Character
 
     public int CurrentHealth { get; protected set; }
     public int SpeedPoints { get; protected set; }
+
     public CharacterClass CharacterClass { get; protected set; }
 
     public Character(string name, CharacterClass characterClass)
